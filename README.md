@@ -83,6 +83,10 @@ $email->setFrom($from)
         ->send();
 ```
 
+###Qual a vantagem? O PHPMailer já não faz isso?
+
+Sim, o PHPMailer já faz isso, com a diferença que você tem de lembrar de configurar toda vez que o utiliza. Com este componente você preocupa-se de configurar apenas uma vez e utilizá-lo de forma rápida sempre que precisar. Por seguir as recomendações da [FIG](http://www.php-fig.org/) pode facilmente ser utilizado em qualquer Framework ou CMS. A ideia é que você crie um arquivo de configurações se precisar e registre o componente como um serviço, ou mesmo forneça o mesmo por injeção de dependência. Desta forma toda vez que se fizer necessário enviar e-mails o componente já estará configurado e pronto para utilizar.
+
 
 ###Contribuições
 
@@ -91,3 +95,4 @@ Basta clonar o repositório, criar um branch que descreva a melhoria/correção 
 
 ###Report de erros
 Utilize as issues do [github](https://github.com/redsuns/email-component/issues)
+
