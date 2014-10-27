@@ -29,8 +29,9 @@ return array(
     'smtp_username' => 'username',
     'smtp_password' => 'pass',
     'smtp_secure' => 'tls',
+    'is_html' => true,
+    'word_wrap' => 150, // se não presente o default será 150
     'charset' => 'utf-8', // se não presente o default será utf-8
-    'is_html' => true // se não presente o default será true
 );
 
 ```
@@ -95,4 +96,3 @@ Basta clonar o repositório, criar um branch que descreva a melhoria/correção 
 
 ###Report de erros
 Utilize as issues do [github](https://github.com/redsuns/email-component/issues)
-
