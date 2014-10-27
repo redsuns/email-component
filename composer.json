@@ -1,0 +1,25 @@
+{
+    "name": "redsuns/email-component",
+    "description": "Um componente básico para o envio de e-mails",
+    "version": "0.1",
+    "authors": [
+        {
+            "name": "Redsuns Tecnologia e Design",
+            "email": "contato@redsuns.com.br",
+            "role": "maintainer"
+        },
+        {
+            "name": "Andre Cardoso aka andrebian",
+            "email": "andrecardosodev@gmail.com",
+            "role": "contributor"
+        }
+    ],
+    "require": {
+        "phpmailer/phpmailer": "@stable"
+    },
+    "autoload": {
+        "psr-4": {
+            "Redsuns\\EmailComponent\\": "src/Redsuns/EmailComponent"
+        }
+    }
+}
