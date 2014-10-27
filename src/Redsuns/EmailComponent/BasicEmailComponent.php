@@ -40,7 +40,7 @@ class BasicEmailComponent
     
     /**
      * @param array $from
-     * @return \Redsuns\EmailComponent\EmailComponent
+     * @return \Redsuns\EmailComponent\BasicEmailComponent
      */
     public function setFrom(array $from)
     {
@@ -70,7 +70,9 @@ class BasicEmailComponent
      */
     public function send()
     {
-        return $this->mail->send();
+        $emailSent = $this->mail->send();
+        $this->mail->clearAllRecipients();
+        return $emailSent;
     }
     
     /**
