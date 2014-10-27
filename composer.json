@@ -1,6 +1,7 @@
 {
     "name": "redsuns/email-component",
     "description": "Um componente básico para o envio de e-mails",
+    "type": "library",
     "version": "0.1",
     "authors": [
         {
