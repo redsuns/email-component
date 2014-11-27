@@ -30,22 +30,45 @@ class BasicEmailComponent
     }
     
     /**
-     * @param array $to
+     * 
+     * @param mixed $to
+     * @return \Redsuns\EmailComponent\BasicEmailComponent
+     * @throws Exception
      */
-    public function setTo(array $to)
+    public function setTo($to)
     {
-        $this->mail->addAddress($to['email'], $to['name']);
+        if( is_array($from) ) {
+            if( !array_key_exists('name', $from) || !array_key_exists('email', $from) ) {
+                throw new Exception('Você deve fornecer os campos "nome" e "email"');
+            }
+            
+            $this->mail->addAddress($to['email'], $to['name']);
+        } else {
+            $this->mail->addAddress($to);
+        }
+        
         return $this;
     }
     
     /**
-     * @param array $from
+     * 
+     * @param mixed $from
      * @return \Redsuns\EmailComponent\BasicEmailComponent
+     * @throws Exception
      */
-    public function setFrom(array $from)
+    public function setFrom($from)
     {
-        $this->mail->From = $from['email'];
-        $this->mail->FromName = $from['name'];
+        if( is_array($from) ) {
+            if( !array_key_exists('name', $from) || !array_key_exists('email', $from) ) {
+                throw new Exception('Você deve fornecer os campos "nome" e "email"');
+            }
+            
+            $this->mail->From = $from['email'];
+            $this->mail->FromName = $from['name'];
+        } else {
+            $this->mail->From = $from;
+        }
+        
         return $this;
     }
     
