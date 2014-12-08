@@ -37,8 +37,8 @@ class BasicEmailComponent
      */
     public function setTo($to)
     {
-        if( is_array($from) ) {
-            if( !array_key_exists('name', $from) || !array_key_exists('email', $from) ) {
+        if( is_array($to) ) {
+            if( !array_key_exists('name', $to) || !array_key_exists('email', $to) ) {
                 throw new Exception('Você deve fornecer os campos "nome" e "email"');
             }
             
