@@ -52,6 +52,27 @@ class BasicEmailComponent
     
     /**
      * 
+     * @param mixed $bcc
+     * @return \Redsuns\EmailComponent\BasicEmailComponent
+     * @throws Exception
+     */
+    public function setBcc($bcc)
+    {
+        if( is_array($bcc) ) {
+            if( !array_key_exists('name', $bcc) || !array_key_exists('email', $bcc) ) {
+                throw new Exception('Você deve fornecer os campos "nome" e "email"');
+            }
+            
+            $this->mail->addBCC($bcc['email'], $bcc['name']);
+        } else {
+            $this->mail->addBCC($bcc);
+        }
+        
+        return $this;
+    }
+    
+    /**
+     * 
      * @param mixed $from
      * @return \Redsuns\EmailComponent\BasicEmailComponent
      * @throws Exception
