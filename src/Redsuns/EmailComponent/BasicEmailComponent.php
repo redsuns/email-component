@@ -26,7 +26,7 @@ class BasicEmailComponent
         $this->config = $config;
         $this->mail = new PHPMailer();
         
-        $this->__applyConfigurations();
+        $this->applyConfigurations();
     }
     
     /**
@@ -41,10 +41,10 @@ class BasicEmailComponent
             if( !array_key_exists('name', $to) || !array_key_exists('email', $to) ) {
                 throw new Exception('Você deve fornecer os campos "nome" e "email"');
             }
-            
+
             $this->mail->addAddress($to['email'], $to['name']);
         } else {
-            $this->mail->addAddress($to);
+            $this->parseToAsString($to);
         }
         
         return $this;
@@ -122,7 +122,7 @@ class BasicEmailComponent
     /**
      * 
      */
-    private function __applyConfigurations()
+    private function applyConfigurations()
     {
         if (isset($this->config['is_smtp']) && true === $this->config['is_smtp']) {
             $this->mail->isSMTP();
@@ -140,6 +140,23 @@ class BasicEmailComponent
         
         if( isset($this->config['is_html']) && true === $this->config['is_html']) {
             $this->mail->isHTML(true);
+        }
+    }
+    
+    /**
+     * Realiza o tratamento de e-mails caso o(s) mesmo(s) seja(m) enviados como string
+     * 
+     * @param string $to
+     */
+    private function parseToAsString($to)
+    {
+        if (false !== strpos($to, ',')) {
+            $emails = explode(',', $to);
+            foreach ($emails as $email) {
+                $this->mail->addAddress($email);
+            }
+        } else {
+            $this->mail->addAddress($to);
         }
     }
 
