@@ -93,6 +93,27 @@ class BasicEmailComponent
         return $this;
     }
     
+    /**
+     * 
+     * @param mixed $replyTo
+     * @return \Redsuns\EmailComponent\BasicEmailComponent
+     * @throws Exception
+     */
+    public function setReplyTo($replyTo)
+    {
+        if( is_array($replyTo) ) {
+            if( !array_key_exists('name', $replyTo) || !array_key_exists('email', $replyTo) ) {
+                throw new Exception('Você deve fornecer os campos "nome" e "email"');
+            }
+            
+            $this->mail->addReplyTo($replyTo['email'], $replyTo['name']);
+        } else {
+            $this->mail->addReplyTo($replyTo);
+        }
+        
+        return $this;
+    }
+    
     public function setSubject($subject)
     {
         $this->mail->Subject = $subject;
